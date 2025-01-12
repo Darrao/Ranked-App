@@ -39,12 +39,14 @@ const CreateContestPage = () => {
         choice.images.length === 0 ||
         choice.images.some((img) => img.trim() === '')
     );
-
+  
     if (missingImages) {
       setMessage('Tous les choix doivent avoir au moins une URL d\'image valide.');
       return;
     }
-
+  
+    console.log('Données envoyées au backend :', { choices });
+  
     try {
       setMessage('');
       await axios.post(`${API_URL}/surveys/create`, { choices });
