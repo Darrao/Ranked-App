@@ -48,15 +48,18 @@ const CreateContestPage = () => {
     console.log('Données envoyées au backend :', { choices });
   
     try {
-      setMessage('');
-      await axios.post(`${API_URL}/surveys/create`, { choices });
-      setMessage('Concours créé avec succès !');
-    } catch (err) {
-      console.error('Erreur lors de la création du concours :', err);
-      setMessage('Erreur lors de la création du concours.');
-    }
-  };
+        setMessage('');
+        await axios.post(`${API_URL}/surveys/create`, { choices });
+        setMessage('Concours créé avec succès !');
+      } catch (err) {
+        console.error('Erreur lors de la création du concours :', err.response?.data || err.message);
+        setMessage(
+          `Erreur lors de la création du concours : ${err.response?.data?.message || err.message}`,
+        );
+      }
+    };
 
+    
   return (
     <div>
       <h2>Créer un concours</h2>
