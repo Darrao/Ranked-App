@@ -9,19 +9,20 @@ const EmailPage = () => {
 
   const handleSubmit = async () => {
     console.log("Tentative d'envoi de l'email :", email);
-
+  
     try {
-      const response = await axios.post(`${API_URL}/surveys/send-email`, { email }); // Utilisation de API_URL
+      const response = await axios.post(`${API_URL}/surveys/send-email`, { email });
       console.log("Réponse du backend :", response.data);
-
+  
       setMessage(
         "Un email de vérification a été envoyé. Veuillez vérifier votre boîte de réception."
       );
       setError("");
     } catch (err) {
       console.error("Erreur lors de l'envoi de l'email :", err);
+  
       if (err.response && err.response.data && err.response.data.message) {
-        setError(err.response.data.message);
+        setError(err.response.data.message); // Afficher le message détaillé du backend
       } else {
         setError("Une erreur inattendue est survenue.");
       }
