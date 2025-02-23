@@ -23,7 +23,7 @@ const RankingPage = () => {
 
     const fetchOptions = async () => {
       try {
-        const response = await axios.get(`${API_URL}/surveys`); // Utilisation de l'API_URL
+        const response = await axios.get(`${API_URL}surveys`); // Utilisation de l'API_URL
         setOptions(response.data.options);
       } catch (err) {
         setError('Erreur lors de la récupération des options.');
